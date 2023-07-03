@@ -10,7 +10,7 @@ había en el menú... entónces, si se agrega
 un nuevo item/link al menú, habrá que modificar
 la posición "top" de los elementos .menu y .topbar.
  */
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 import { Link, usePage } from '@inertiajs/inertia-vue3'
 import { useStore } from '@/store/mainStore.js'
@@ -23,6 +23,15 @@ const store = useStore()
 const { user, scroll } = storeToRefs(store)
 
 const { y } = useWindowScroll()
+const y_diff = 90
+
+const navToggle = () => {
+	menu_open.value = !menu_open.value
+}
+
+onMounted(() => {
+	window.addEventListener('resize', () => menu_open.value = false)
+})
 
 watch(y, val => {
 	if( val >= 25 )
@@ -34,44 +43,6 @@ watch(y, val => {
 const menu_open = ref(false)
 const handleTopBarAction = (cb) => cb()
 
-
-const main_menu = [
-	{
-		id: 'menu-item-home',
-		text: 'Inicio',
-		link: '/',
-		class: 'home',
-		active: false
-	},
-	{
-		id: 'menu-item-talk',
-		text: 'Sobre Hablemos',
-		link: '/sobre-hablemos',
-		class: 'sobre-hablemos',
-		active: '/sobre-hablemos' === url ? true : false
-	},
-	{
-		id: 'menu-item-concepts',
-		text: 'Conceptos',
-		link: '/conceptos',
-		class: 'conceptos',
-		active: '/conceptos' === url ? true : false
-	},
-	{
-		id: 'menu-item-media',
-		text: 'Podcasts y consultas',
-		link: '/podcasts-consultas',
-		class: 'situaciones-consultas',
-		active: '/podcasts-consultas' === url ? true : false
-	},
-	{
-		id: 'menu-item-committee',
-		text: 'Comité',
-		link: '/comite',
-		class: 'comite',
-		active: '/comite' === url ? true : false
-	}
-]
 
 const toggleMenu = () => {
 	setTimeout(() => {
@@ -89,328 +60,122 @@ const toggleMenu = () => {
 
 
 <template>
-<section
-	id="mainHeader"
-	ref="header"
-	:class="scroll">
+<section 
+	id="mainHeader" 
+	ref="header" 
+	class="bg-white px-6 top-0 inset-x-0 fixed z-30 will-change-auto 2xl:px-0"
+	:class="{'shadow-xl': (y > y_diff)}">
 
-	<div class="badge">
-		<img class="badge-img" src="img/corner.svg" alt="Esteve">
-	</div>
-
-	<div class="container global">
-		<div :class="['topbar', { 'active': menu_open }]">
-			<hr>
-
-			<Link
-				:href="route('contact')"
-				class="menu-item">
-				<span class="nav-item">Contacto</span>
-			</Link>
-
-			<Link
-				v-if="user === null"
-				:href="route('register')"
-				class="menu-item">
-				<span class="menu-item-separator"></span>
-				<span class="nav-item">Registro</span>
-			</Link>
-
-			<Link
-				v-if="user === null"
-				:href="route('login')"
-				class="menu-item">
-				<span class="menu-item-separator"></span>
-				<span class="nav-item">Iniciar sesión</span>
-			</Link>
-
-			<Link
-				v-if="user !== null"
-				:href="route('account')"
-				class="menu-item">
-				<span class="menu-item-separator"></span>
-				<span class="nav-item">Mi cuenta</span>
-			</Link>
-
-			<Link
-				v-if="user !== null"
-				:href="route('logout')"
-				class="menu-item"
-				method="POST"
-				as="button"
-				@click="() => store.deleteUser()">
-				<span class="menu-item-separator"></span>
-				<span class="nav-item">Salir</span>
-			</Link>
-		</div>
-	</div>
-
-
-	<div class="container global">
-		<div class="flex justify-between">
-			<h1 class="brand">
-				<Link :href="route('home')">
-					<div class="logo"></div>
-					<div class="slogan"></div>
-					<span class="sr-only">Hablemos de psiquiatría legal</span>
+	<div 
+		class="container mx-auto relative transition-all will-change-auto"
+		:class="{'md:-mt-14': (y > y_diff)}">
+		<div class="py-1 flex justify-between items-center">
+			<h1>
+				<Link :href="route('home')" class="w-44 block md:w-60">
+					<img src="img/brand.svg" alt="Colesterol challenge" class="w-full">
 				</Link>
 			</h1>
 
-
-			<button
-				@click="toggleMenu"
-				class="md:hidden">
-				<svg
-					v-if="!menu_open"
-					class="fill-white w-7"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24">
-					<path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path>
-				</svg>
-
-				<svg
-					v-if="menu_open"
-					class="fill-white w-9"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24">
-					<path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"></path>
-				</svg>
+			<button 
+				class="text-brand-orange leading-none md:hidden"
+				@click="navToggle">
+				<i v-if="!menu_open" class="ri-menu-3-fill text-2xl"></i>
+				<i v-if="menu_open" class="ri-close-line text-3xl -mt-1"></i>
 			</button>
-		</div>
-	</div>
 
+			<div class="hidden space-x-2 md:block">
+				<Link class="bg-brand-orange text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
+					<i class="ri-user-3-line"></i>
+					<span>Registro</span>
+				</Link>
 
-	<div class="container global">
-		<div :class="['menu', { 'active': menu_open }]">
-			<div
-				v-for="(item, i) in main_menu"
-				:key="item.id"
-				class="w-full flex items-center">
-				<span v-if="i" class="menu-item-separator"></span>
-				<Link
-					class="menu-item"
-					:href="item.link"
-					:class="[item.class, { 'active': item.active }]">
-					<span v-html="item.text" />
+				<Link class="bg-brand-green text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
+					<i class="ri-user-3-line"></i>
+					<span>Acceso</span>
 				</Link>
 			</div>
-            <div
-                v-if="user !== null"
-                class="w-full flex items-center">
-                <span class="menu-item-separator"></span>
-                <Link
-                    class="menu-item"
-                    href="/xeristar"
-                    :class="['xeristar', { 'active': '/xeristar' === url ? true : false }]">
-                    <span v-html="'Xeristar&reg;'" />
-                </Link>
-            </div>
 		</div>
 	</div>
+
+
+	<div 
+		class="bg-white inset-x-0 top-8 absolute px-6 transition-all will-change-auto md:relative md:top-0 2xl:px-0"
+		:class="{'pointer-events-none opacity-0 md:opacity-100': !menu_open, 'pointer-events-auto': menu_open}">
+		<div 
+			class="container py-6 mx-auto md:max-w-5xl md:py-4">
+			<div class="grid gap-5 lg:flex">
+				
+				<img 
+					src="img/brand.svg" 
+					alt="Colesterol challenge" 
+					class="-top-0.5 relative transition-all pointer-events-none will-change-auto"
+					:class="y > y_diff ? 'hidden lg:block w-40 opacity-100' : 'hidden w-0 opacity-0'">
+
+				<div class="w-full grid gap-5 md:flex md:justify-center lg:gap-10">
+					<Link href="#en-que-consiste" 					class="nav-item">EN QUÉ CONSISTE</Link>
+					<Link href="#challenges" 								class="nav-item">CHALLENGES</Link>
+					<Link href="#bibliografia" 							class="nav-item">BIBLIOGRAFÍA</Link>
+					<Link href="#coordinacion-cientifica" 	class="nav-item">COORDINACIÓN CIENTÍFICA</Link>
+					<Link href="#coordinacion-cientifica" 	class="nav-item">COORDINACIÓN CIENTÍFICA</Link>
+					<Link :href="route('contact')" 					class="nav-item">CONTACTO</Link>
+
+					<div class="mt-3 flex gap-x-2 md:hidden">
+						<div class="flex-1">
+							<Link class="bg-brand-orange text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded">
+								<i class="ri-user-3-line"></i>
+								<span>Registro</span>
+							</Link>
+						</div>
+
+						<div class="flex-1">
+							<Link class="bg-brand-green text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded">
+								<i class="ri-user-3-line"></i>
+								<span>Acceso</span>
+							</Link>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 </section>
 
-<div class="spacer"></div>
+<div class="bg-white h-9 transition-all will-change-auto relative md:h-[94px] lg:h-[98px] xl:h-[104px]" :class="{'-top-14': (y > y_diff)}"></div>
 </template>
 
-
-
 <style lang="scss" scoped>
-#mainHeader{
-	@apply bg-brand-blue text-white
-						py-2 px-5
-						inset-x-0 top-0 fixed transition-all
-						z-30
-						lg:py-3 lg:px-10;
-}
+.nav-item{
+	@apply
+	text-brand-orange
+	text-sm
+	font-ropa
+	font-semibold
+	leading-none
+	relative
+	whitespace-nowrap
+	select-none;
 
-.badge{
-	@apply left-0 top-0 absolute z-10;
-}
-
-.badge-img{
-	@apply h-14 transition-all
-					sm:h-20 md:h-24;
-}
-
-
-.brand{
-	@apply mx-auto relative transition-all z-10;
-
-	a{
-		@apply flex items-center gap-x-5;
+	&::after{
+		content: '';
+		
+		@apply
+		bg-brand-orange
+		left-1/2
+		right-1/2
+		-bottom-0.5
+		absolute
+		h-0.5
+		hidden
+		opacity-80
+		transition-all
+		md:block;
 	}
 
-	.logo{
-		background-image: url('../../img/brand.webp');
-		background-position: center -15px;
-		background-size: 100% auto;
-		width: 100px;
-		height: 85px;
-		@apply bg-no-repeat block;
-
-		@media(min-width: 768px){
-			width: 130px;
-			height: 100px;
-		}
-	}
-
-	.slogan{
-		background-image: url('../../img/slogan.svg');
-		background-size: auto 100%;
-		background-position: 15px 0;
-		width: 140px;
-		height: 35px;
-		@apply bg-no-repeat border-l-2 border-white;
-
-		@media (min-width: 768px){
-			width: 180px;
-			height: 47px;
-		}
-	}
-}
-
-.topbar{
-	top: 300px;
-	@apply bg-brand-blue py-6 hidden inset-x-0
-						absolute select-none
-						md:p-0 md:flex md:justify-end md:items-center
-						md:top-auto md:relative;
-
-	&.active{
-		@apply grid md:flex;
-	}
-
-	hr{
-		@apply border-white mx-4 mb-5 opacity-30 md:hidden;
-	}
-
-	.menu-item{
-		@apply font-medium leading-none
-						px-4 py-2 inline-flex items-center
-						whitespace-nowrap overflow-hidden
-						overflow-ellipsis cursor-pointer
-						md:text-sm md:px-3;
-
-		& > .nav-item{
-			@apply transition-all;
-		}
-
-		&:hover > .nav-item{
-			@apply text-brand-blue bg-white bg-opacity-80;
-			box-shadow: -5px 0 0 rgba(255,255,255,.8),
-									5px 0 0 rgba(255,255,255,.8);
-		}
-	}
-
-	.menu-item-separator{
-		@apply bg-white w-px h-3.5 hidden -left-3 relative
-							opacity-60 md:block;
-	}
-}// topbar
-
-
-.menu{
-	top: 100px;
-	@apply bg-brand-blue hidden
-						inset-x-0 absolute select-none
-						md:p-0 md:mt-3 md:flex md:justify-between
-						md:top-auto md:relative;
-
-	&.active{
-		@apply grid md:flex;
-	}
-
-	.menu-item{
-		@apply font-medium leading-none
-						px-4 py-3 inline-flex
-						relative whitespace-nowrap
-						overflow-ellipsis
-						transition-all
-						md:px-4 md:py-2 md:mx-auto;
-
-		&.active::after{
-			content: '';
-			border: solid 12px transparent;
-			border-bottom-color: #FFF;
-			margin-left: -12px;
-			left: 50%;
-			bottom: -.8rem;
-			position: absolute;
-
-			@media (min-width: 1024px){ bottom: -1rem; }
-		}
-
-		&.situaciones-consultas.active::after{
-			border-bottom-color: #ed6f81;
-            @media (max-width: 767px){
-                border-bottom-color: #005FAF;
-            }
-		}
-
-		&:hover{
-			text-shadow: 0 0 10px #fff;
-		}
-	}
-
-	.menu-item-separator{
-		@apply bg-white w-px h-4 hidden top-px
-							relative opacity-60 md:block;
-	}
-
-}// menu
-
-
-@media (max-width: 767px){
-	#mainHeader.affix{
-		.badge-img{
-			@apply h-16;
-		}
-
-		.brand{ @apply h-0 scale-0 opacity-0; }
-
-		.menu{
-			top: 44px;
-		}
-
-		.topbar{
-			top: 244px;
-		}
-	}
-}
-
-.spacer{
-	@apply bg-brand-blue h-[100px] transition-all
-					md:h-[200px] lg:h-[207px];
-
-	@media (min-width: 1200px){ height: 215px; }
-}
-
-
-@media (min-width: 767px){
-	#mainHeader.affix{
-		@apply pt-1;
-
-		.brand{
-			@apply ml-20 -mt-9;
-
-			.logo{
-				width: 90px;
-				height: 67px;
-			}
-
-			.slogan{
-				height: 35px;
-			}
-		}
-
-		.menu{
-			@apply mt-0;
-
-			.menu-item{
-				&.active::after{ border-bottom-color: transparent; }
-			}
-		}
-
+	&:hover::after{
+		@apply
+		inset-x-0;
 	}
 }
 </style>

@@ -14,11 +14,21 @@ module.exports = {
 
 		extend: {
 			fontFamily: {
+				ropa: '"Ropa Sans", sans-serif'
 				// sans: ['Barlow', ...defaultTheme.fontFamily.sans],
 			},
 
 			colors: {
 				'brand': {
+					orange: {
+						DEFAULT: '#EC7E3E'
+					},
+					green: {
+						100: '#EAF2DD',
+						400: '#81B56A',
+						DEFAULT: '#188338'
+					},
+
 					blue: {
 						DEFAULT: '#005FAF'
 					},

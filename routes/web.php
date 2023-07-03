@@ -19,7 +19,8 @@ use App\Http\Controllers\Static\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', function(){ return Inertia::render('Home'); })->name('home');
+
 Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store');
 
