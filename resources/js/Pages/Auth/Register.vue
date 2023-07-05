@@ -4,7 +4,7 @@ import { useModal } from '@/store/modalStore'
 // import RegisterModal from '@/Components/Auth/RegisterModal.vue'
 
 import PageLayout from '@/Layouts/PageLayout.vue'
-import Intro from '@/Components/Pages/Intro.vue'
+import PageHeader from '@/Components/PageHeader.vue'
 import InputError from '@/Components/Form/InputError.vue'
 import InputLabel from '@/Components/Form/InputLabel.vue'
 import PrimaryButton from '@/Components/Form/PrimaryButton.vue'
@@ -12,7 +12,7 @@ import TextInput from '@/Components/Form/TextInput.vue'
 import Dropdown from '@/Components/Form/Dropdown.vue'
 import Option from '@/Components/Form/DropdownOption.vue'
 import Checkbox from '@/Components/Form/Checkbox.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { Link, useForm } from '@inertiajs/inertia-vue3'
 
 
 const {
@@ -107,14 +107,25 @@ const submit = () => {
 
 <template>
 	<PageLayout>
-		<Intro :data="$page.props.intro" />
+		<PageHeader>
+			<div class="max-w-3xl mx-auto text-center">
+				<h2 class="text-white text-2xl font-bold leading-none md:text-3xl">REGISTRO</h2>
+				<div class="text-white space-y-4 mt-5">
+					<p>
+						Gracias por tu interés por participar en la iniciativa COLESTEROL CHALLENGE.<br>
+						<strong>Por favor, introduce tus datos.</strong>
+					</p>
+
+					<p>
+						Si ya estás dado de alta en el Colesterol Challenge o en ESTEVE ÁGORA, haz <Link :href="route('login')" class="font-semibold underline">log-in</Link> introduciendo tu usuario y contraseña.
+					</p>
+				</div>
+			</div>
+		</PageHeader>
 
 		<section id="form">
-			<form
-				@submit.prevent="submit"
-				class="">
-
-				<div class="container global">
+			<form @submit.prevent="submit">
+				<div class="max-w-3xl mx-auto px-6 py-16 3xl:px-0">
 
 					<div>
 						<InputLabel for="name" value="Nombre" />
@@ -163,45 +174,43 @@ const submit = () => {
 
 
 
-
-
 					<div class="grid md:grid-cols-2 md:gap-x-5">
 
-							<div class="mt-7">
-								<InputLabel for="country" value="País" />
+						<div class="mt-7">
+							<InputLabel for="country" value="País" />
 
-								<Dropdown>
-									<template #trigger>
-										{{ country_dropdown }}
-									</template>
+							<Dropdown>
+								<template #trigger>
+									{{ country_dropdown }}
+								</template>
 
-									<template #content>
-										<Option v-for="opt in countries_dropdown_options" :key="opt.value" @click="triggerDropdown(opt,'country')">{{ opt.label }}
-										</Option>
-									</template>
-								</Dropdown>
+								<template #content>
+									<Option v-for="opt in countries_dropdown_options" :key="opt.value" @click="triggerDropdown(opt,'country')">{{ opt.label }}
+									</Option>
+								</template>
+							</Dropdown>
 
-								<InputError class="mt-2" :message="form.errors.usu_codpais" />
-							</div>
+							<InputError class="mt-2" :message="form.errors.usu_codpais" />
+						</div>
 
 
-							<div class="mt-7">
-								<InputLabel for="province" value="Provincia" />
+						<div class="mt-7">
+							<InputLabel for="province" value="Provincia" />
 
-								<Dropdown>
-									<template #trigger>
-										{{ provinces_dropdown }}
-									</template>
+							<Dropdown>
+								<template #trigger>
+									{{ provinces_dropdown }}
+								</template>
 
-									<template #content>
-										<Option v-for="opt in provinces_dropdown_options" :key="opt.value" @click="triggerDropdown(opt, 'provinces')">{{
-											opt.label }}
-										</Option>
-									</template>
-								</Dropdown>
+								<template #content>
+									<Option v-for="opt in provinces_dropdown_options" :key="opt.value" @click="triggerDropdown(opt, 'provinces')">{{
+										opt.label }}
+									</Option>
+								</template>
+							</Dropdown>
 
-								<InputError class="mt-2" :message="form.errors.usu_codprovestado" />
-							</div>
+							<InputError class="mt-2" :message="form.errors.usu_codprovestado" />
+						</div>
 
 					</div>
 
@@ -223,6 +232,7 @@ const submit = () => {
 
 						<InputError class="mt-2" :message="form.errors.usu_codpoblacion" />
 					</div>
+
 
 					<div class="mt-7">
 						<InputLabel for="address" value="Dirección" />
@@ -250,46 +260,46 @@ const submit = () => {
 						<InputError class="mt-2" :message="form.errors.usu_telefono" />
 					</div>
 
-                    <div class="grid md:grid-cols-2 md:gap-x-5">
-					    <div class="mt-7">
-						<InputLabel value="Perfil de usuario" />
+					<div class="grid md:grid-cols-2 md:gap-x-5">
+						<div class="mt-7">
+							<InputLabel value="Perfil de usuario" />
 
-						<Dropdown>
-							<template #trigger>
-								{{ profile_dropdown }}
-							</template>
+							<Dropdown>
+								<template #trigger>
+									{{ profile_dropdown }}
+								</template>
 
-							<template #content>
-								<Option
-									v-for="opt in profile_dropdown_options"
-									:key="opt.value"
-									@click="triggerDropdown(opt, 'profile')">{{ opt.label }}</Option>
-							</template>
-						</Dropdown>
+								<template #content>
+									<Option
+										v-for="opt in profile_dropdown_options"
+										:key="opt.value"
+										@click="triggerDropdown(opt, 'profile')">{{ opt.label }}</Option>
+								</template>
+							</Dropdown>
 
 
 
-						<InputError class="mt-2" :message="form.errors.usu_codperfil" />
-                        </div>
-                        <div class="mt-7">
-                                <InputLabel value="Especialidad" />
+							<InputError class="mt-2" :message="form.errors.usu_codperfil" />
+						</div>
 
-                                <Dropdown>
-                                    <template #trigger>
-                                        {{ specialty_dropdown }}
-                                    </template>
+						<div class="mt-7">
+							<InputLabel value="Especialidad" />
 
-                                    <template #content>
-                                        <Option
-                                            v-for="opt in specialty_dropdown_options"
-                                            :key="opt.value"
-                                            @click="triggerDropdown(opt, 'specialty')">{{ opt.label }}</Option>
-                                    </template>
-                                </Dropdown>
-                            <InputError class="mt-2" :message="form.errors.usu_codespecialidad" />
+							<Dropdown>
+								<template #trigger>{{ specialty_dropdown }}</template>
 
-					    </div>
-                    </div>
+								<template #content>
+									<Option
+										v-for="opt in specialty_dropdown_options"
+										:key="opt.value"
+										@click="triggerDropdown(opt, 'specialty')">{{ opt.label }}</Option>
+								</template>
+							</Dropdown>
+							<InputError class="mt-2" :message="form.errors.usu_codespecialidad" />
+						</div>
+					</div>
+
+
 					<div class="mt-7">
 						<InputLabel for="email" value="Email" />
 
@@ -312,8 +322,7 @@ const submit = () => {
 							type="password"
 							class="mt-1 block w-full"
 							v-model="form.usu_password"
-							autocomplete="new-password"
-						/>
+							autocomplete="new-password" />
 
 						<InputError class="mt-2" :message="form.errors.usu_password" />
 					</div>
@@ -348,18 +357,19 @@ const submit = () => {
 								<a
 									href="https://www.esteveagora.com/es/aviso-legal"
 									target="_blank"
-									class="text-brand-blue hover:underline">
+									class="text-brand-green hover:underline">
 									Aviso Legal
 								</a>
 								y la
 								<a
 									href="https://www.esteveagora.com/es/privacidad"
 									target="_blank"
-									class="text-brand-blue hover:underline">
+									class="text-brand-green hover:underline">
 									Política de privacidad
 								</a>
 							</span>
 						</label>
+
 						<InputError class="mt-2" :message="form.errors.terms" />
 
 
@@ -371,27 +381,13 @@ const submit = () => {
 						</label>
 					</div>
 
-				</div>
-
-
-				<div class="form-footer">
-					<div class="container-global">
-						<div class="flex justify-center py-10">
-
-							<PrimaryButton
-								class="w-full sm:w-auto"
-								:class="{ 'opacity-25': form.processing }"
-								:disabled="form.processing">
-								Registrar
-							</PrimaryButton>
-
-						</div>
+					<div class="mt-10 flex justify-center">
+						<button class="bg-brand-orange text-white font-bold leading-tight px-20 py-2.5 transition-all select-none rounded hover:opacity-90">Enviar</button>
 					</div>
-				</div>
 
+				</div>
 			</form>
 		</section>
-
 	</PageLayout>
 
 

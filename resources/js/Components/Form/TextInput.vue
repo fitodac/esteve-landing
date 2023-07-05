@@ -37,7 +37,7 @@ defineExpose({ focus: () => input.value.focus() });
 <style lang="scss" scoped>
 .form-input{
 	@apply bg-white text-gray-800 border 
-					border-gray-400 w-full px-4 
+					border-brand-green w-full px-4 
 					py-2.5 mt-2 leading-none;
 	box-shadow: 0 0 0 100px #FFF inset;
 }

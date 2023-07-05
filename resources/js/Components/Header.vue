@@ -63,7 +63,7 @@ const toggleMenu = () => {
 <section 
 	id="mainHeader" 
 	ref="header" 
-	class="bg-white px-6 top-0 inset-x-0 fixed z-30 will-change-auto 2xl:px-0"
+	class="bg-white px-6 top-0 inset-x-0 fixed z-30 will-change-auto 3xl:px-0"
 	:class="{'shadow-xl': (y > y_diff)}">
 
 	<div 
@@ -84,12 +84,16 @@ const toggleMenu = () => {
 			</button>
 
 			<div class="hidden space-x-2 md:block">
-				<Link class="bg-brand-orange text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
+				<Link 
+					:href="route('register')"
+					class="bg-brand-orange text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
 					<i class="ri-user-3-line"></i>
 					<span>Registro</span>
 				</Link>
 
-				<Link class="bg-brand-green text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
+				<Link 
+					:href="route('login')"
+					class="bg-brand-green text-white text-sm font-bold px-5 py-2.5 inline-flex justify-center items-center gap-1 rounded transition-all select-none will-change-auto lg:py-3 hover:opacity-80">
 					<i class="ri-user-3-line"></i>
 					<span>Acceso</span>
 				</Link>
@@ -99,7 +103,7 @@ const toggleMenu = () => {
 
 
 	<div 
-		class="bg-white inset-x-0 top-8 absolute px-6 transition-all will-change-auto md:relative md:top-0 2xl:px-0"
+		class="bg-white inset-x-0 top-8 absolute px-6 transition-all will-change-auto md:relative md:top-0 md:pointer-events-auto 3xl:px-0"
 		:class="{'pointer-events-none opacity-0 md:opacity-100': !menu_open, 'pointer-events-auto': menu_open}">
 		<div 
 			class="container py-6 mx-auto md:max-w-5xl md:py-4">
@@ -111,24 +115,27 @@ const toggleMenu = () => {
 					class="-top-0.5 relative transition-all pointer-events-none will-change-auto"
 					:class="y > y_diff ? 'hidden lg:block w-40 opacity-100' : 'hidden w-0 opacity-0'">
 
-				<div class="w-full grid gap-5 md:flex md:justify-center lg:gap-10">
-					<Link href="#en-que-consiste" 					class="nav-item">EN QUÉ CONSISTE</Link>
-					<Link href="#challenges" 								class="nav-item">CHALLENGES</Link>
-					<Link href="#bibliografia" 							class="nav-item">BIBLIOGRAFÍA</Link>
-					<Link href="#coordinacion-cientifica" 	class="nav-item">COORDINACIÓN CIENTÍFICA</Link>
-					<Link href="#coordinacion-cientifica" 	class="nav-item">COORDINACIÓN CIENTÍFICA</Link>
-					<Link :href="route('contact')" 					class="nav-item">CONTACTO</Link>
+				<div class="w-full grid gap-5 md:px-14 md:flex md:justify-between lg:gap-10">
+					<Link :href="`${route('home')}#en-que-consiste`" 						class="nav-item">EN QUÉ CONSISTE</Link>
+					<Link :href="`${route('home')}#challenges`" 								class="nav-item">CHALLENGES</Link>
+					<Link :href="`${route('home')}#bibliografia`" 							class="nav-item">BIBLIOGRAFÍA</Link>
+					<Link :href="`${route('home')}#coordinacion-cientifica`" 		class="nav-item">COORDINACIÓN CIENTÍFICA</Link>
+					<Link :href="route('contact')" 															class="nav-item">CONTACTO</Link>
 
 					<div class="mt-3 flex gap-x-2 md:hidden">
 						<div class="flex-1">
-							<Link class="bg-brand-orange text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded">
+							<Link 
+								class="bg-brand-orange text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded"
+								:href="route('register')">
 								<i class="ri-user-3-line"></i>
 								<span>Registro</span>
 							</Link>
 						</div>
 
 						<div class="flex-1">
-							<Link class="bg-brand-green text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded">
+							<Link 
+								class="bg-brand-green text-white text-sm font-bold w-full p-2 inline-flex justify-center items-center gap-1 rounded"
+								:href="route('login')">
 								<i class="ri-user-3-line"></i>
 								<span>Acceso</span>
 							</Link>
@@ -142,7 +149,7 @@ const toggleMenu = () => {
 
 </section>
 
-<div class="bg-white h-9 transition-all will-change-auto relative md:h-[94px] lg:h-[98px] xl:h-[104px]" :class="{'-top-14': (y > y_diff)}"></div>
+<div class="bg-white h-9 transition-all will-change-auto relative md:h-[104px] lg:h-[115px] xl:h-[115px]" :class="{'-top-14': (y > y_diff)}"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -155,7 +162,8 @@ const toggleMenu = () => {
 	leading-none
 	relative
 	whitespace-nowrap
-	select-none;
+	select-none
+	md:text-base;
 
 	&::after{
 		content: '';

@@ -12,7 +12,6 @@ import { useStore } from '@/store/mainStore.js'
 
 
 const { intro } = defineProps({
-	intro: Object,
 	canResetPassword: Boolean,
 	status: String,
 });
@@ -48,19 +47,16 @@ const clearErrors = () => {
 
 <template>
 <PageLayout>
+	<section id="login" class="px-6 py-14 3xl:px-0">
+		<div class="max-w-5xl mx-auto">
+			<div class="text-white max-w-md">
 
-	<section id="login">
-		<div class="container global">
+				<h2 class="text-2xl leading-tight font-bold select-none">Inicia sesión o regístrate para participar en los Challenges y tener acceso a todo el contenido.</h2>
 
-			<div class="max-w-lg">
-				<h2>{{ intro.title }}</h2>
-				<div class="intro">{{ intro.intro }}</div>
-                <Link
-                    :href="route('register')"
-                    class="leading-none hover:underline">
-                    <span>En caso contrario</span> <strong>Regístrate</strong>
-                </Link>
-
+				<div class="mt-3">
+					Si ya estás dado o dada de alta, introduce tu usuario y contraseña. 
+					En caso contrario <Link :href="route('register')" class="font-bold">Regístrate</Link>
+				</div>
 
 				<form
 					@submit.prevent="submit"
@@ -81,7 +77,6 @@ const clearErrors = () => {
 
 								<div class="w-10">
 									<button @click.prevent="clearErrors()"  class="hover:opacity-90">
-										<img src="img/btn-close.svg" alt="cerrar" class="w-full">
 									</button>
 								</div>
 							</div>
@@ -93,7 +88,7 @@ const clearErrors = () => {
 							id="email"
 							type="email"
 							placeholder="email"
-							class="mt-1 block w-full"
+							class="!border-white mt-1 block w-full"
 							v-model="form.usu_email"
 							required
 							autofocus
@@ -108,8 +103,8 @@ const clearErrors = () => {
 						<TextInput
 							id="password"
 							type="password"
-                            placeholder="contraseña"
-							class="mt-1 block w-full"
+							placeholder="contraseña"
+							class="!border-white mt-1 block w-full"
 							v-model="form.usu_password"
 							required
 							autocomplete="current-password"
@@ -137,11 +132,8 @@ const clearErrors = () => {
 						</BtnCTA>
 					</div>
 
-
-
 				</form>
 			</div>
-
 		</div>
 	</section>
 
@@ -149,17 +141,15 @@ const clearErrors = () => {
 </template>
 
 
-<style lang="scss" scoped>
+
+<style scoped>
 #login{
-	@apply bg-brand-blue text-white mt-6 px-6 py-14
-					md:px-12 xl:px-0;
+	background: #298338 url('img/hero-bg.jpeg') no-repeat center right / auto 100%;
 }
 
-h2{
-	@apply text-3xl leading-none lg:text-4xl;
-}
-
-.intro{
-	@apply leading-tight mt-3;
+@media (min-width: 768px){
+	#login{
+		background: #298338 url('img/hero-bg.jpeg') no-repeat center right / auto 100%;
+	}
 }
 </style>

@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 <template>
 <div 
 	id="mainFooter"
-	class="bg-brand-green text-white px-6 2xl:px-0">
+	class="bg-brand-green text-white px-6 3xl:px-0">
 	<div class="max-w-5xl mx-auto">
 		
 		<div class="h-8 lg:h-12" />
@@ -28,7 +28,7 @@ import { storeToRefs } from 'pinia'
 			</div>
 
 			<div class="divide-x [&>*]:underline [&>*]:px-2">
-				<Link href="#">Contacto</Link>
+				<Link :href="route('contact')">Contacto</Link>
 				<Link href="#">Aviso Legal</Link>
 				<Link href="#">Privacidad</Link>
 				<Link href="#">Cookies</Link>

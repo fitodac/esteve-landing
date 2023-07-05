@@ -3,85 +3,38 @@ import { Link } from '@inertiajs/inertia-vue3'
 import Cookies from "js-cookie";
 
 const setSpecialistCookie = () => {
-    Cookies.set('specialist', 'true', { expires: 365 });
+	Cookies.set('specialist', 'true', { expires: 365 });
 };
 </script>
 
 <template>
-	<div class="modal">
-		<div class="modal-container">
-			<div class="container global">
+	<div class="bg-black bg-opacity-80 flex items-center inset-0 fixed z-50">
+		<div class="bg-brand-green w-full px-6 py-10 3xl:px-0">
+			<div class="max-w-4xl mx-auto text-white text-center">
 
-				<h3>¡Bienvenido a Hablemos de Psiquiatría Legal!</h3>
+				<h3 class="text-2xl leading-none font-bold md:text-3xl md:leading-none">¡Bienvenido a la iniciativa <br>Colesterol Challenge!</h3>
 
-				<div class="content">
-                    <p><strong>Área de acceso restringido:</strong> esta área contiene información dirigida exclusivamente a profesionales sanitarios facultados para prescribir o dispensar medicamentos en España (requiere una formación especializada para su correcta interpretación).</p><br>
-                    <p>No está permitido utilizar, compartir ni difundir contenidos que pudieran constituir directa o indirectamente promoción de medicamentos de prescripción reproducidos en esta web a través de redes sociales u otros canales, soportes o medios abiertos al público en general. El uso de los contenidos de https://estevepsiquiatrialegal.es/ requiere de la autorización previa de ESTEVE.</p>
+				<div class="text-sm space-y-5 mt-5">
+					<p>Área de acceso restringido: Esta área contiene información dirigida a profesionales sanitarios facultados para prescribir o dispensar medicamentos en España (requiere una formación especializada para su correcta interpretación).</p>
+					<p>No está permitido utilizar, compartir ni difundir contenidos que pudieran construir directa o indirectamente promoción de medicamentos de prescripción reproducidos en esta web a través de redes sociales y otros canales, soportes o medios abiertos al público en general. El uso de los contenidos de <Link href="https://colesterolchallenge.com/" class="underline">https://colesterolchallenge.com/</Link> requiere de la autorización previa de ESTEVE.</p>
+				</div>
 
-                </div>
 
+				<div class="space-y-3 mt-5 align-top sm:space-x-7 sm:space-y-0 sm:mt-10">
+					<Link 
+						class="bg-brand-orange text-xs uppercase leading-none font-semibold h-12 px-4 flex justify-center items-center rounded transition-all select-none hover:opacity-90 sm:w-60 sm:inline-flex" 
+						@click="setSpecialistCookie">
+						Confirmo que<br>soy profesional sanitario
+					</Link>
 
-				<div class="grid justify-center gap-6
-										max-w-3xl mx-auto mt-10 md:flex">
-					<div class="flex-1">
-						<Link
-							class="btn-proceed"
-                            @click="setSpecialistCookie"
-                        >
-							Confirmo que<br>soy profesional sanitario
-						</Link>
-					</div>
-
-					<div class="flex-1">
-						<a
-							href="https://www.esteve.com/es/pacientes/sistema-nervioso-central"
-							class="btn-reject">
-							No soy profesional sanitario
-						</a>
-					</div>
+					<Link
+						class="bg-gray-500 text-xs uppercase leading-none font-semibold h-12 px-4 flex justify-center items-center rounded transition-all select-none hover:opacity-90 sm:w-60 sm:inline-flex"
+						href="https://www.esteve.com/es/pacientes/sistema-nervioso-central">
+						No soy profesional<br> sanitario
+					</Link>
 				</div>
 
 			</div>
 		</div>
 	</div>
 </template>
-
-
-<style lang="scss" scoped>
-.modal{
-	@apply bg-black bg-opacity-60 backdrop-blur-sm
-					inset-0 fixed grid items-center select-none z-50;
-}
-
-.modal-container{
-	@apply bg-brand-blue text-white text-center
-					w-full px-6 py-14 xl:px-0;
-}
-
-h3{
-	@apply text-3xl leading-none
-					md:text-4xl lg:text-5xl;
-}
-
-.content{
-	@apply mt-8;
-}
-
-.btn-proceed{
-	@apply bg-brand-pink text-white
-					text-lg leading-tight text-center uppercase
-					h-full px-10 py-3
-					flex justify-center items-center
-					rounded-lg select-none transition-all
-					hover:opacity-80;
-}
-
-.btn-reject{
-	@apply bg-gray-400 text-white
-					text-lg leading-tight text-center uppercase
-					h-full px-10 py-3
-					flex justify-center items-center
-					rounded-lg select-none transition-all
-					hover:opacity-80;
-}
-</style>

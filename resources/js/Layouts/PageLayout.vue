@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
 import Modal from '@/Components/ModalBlocked.vue'
-import Typeform from '@/Components/ModalTypeform.vue'
 
 const page = usePage()
 const url = ref(page.url.value)
@@ -75,7 +74,6 @@ onMounted(() => allowSite())
 
 	<Teleport to="body">
 		<Modal v-if="showModal" />
-		<Typeform v-if="modal_contact" />
 	</Teleport>
 </div>
 </template>

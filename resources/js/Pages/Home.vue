@@ -12,7 +12,9 @@ const { user } = storeToRefs(store)
 <template>
 <PageLayout>
 
-<section id="hero" class="bg-brand-green bg-[url('img/hero-bg.jpeg')] bg-cover text-white px-6 py-10 md:py-20 2xl:px-0">
+<div id="en-que-consiste" class=""/>
+
+<section id="hero" class="bg-brand-green bg-[url('img/hero-bg.jpeg')] bg-cover  bg-right-top text-white px-6 py-10 md:py-20 3xl:px-0">
 	<div class="max-w-5xl mx-auto">
 		<div class="grid gap-6 md:grid-cols-12 md:items-center">
 
@@ -35,8 +37,9 @@ const { user } = storeToRefs(store)
 
 
 
+<div id="challenges" class=""/>
 
-<section class="px-6 2xl:px-0">
+<section class="px-6 3xl:px-0">
 	<div class="max-w-5xl mx-auto">
 
 		<div class="text-center relative pl-28 py-16 select-none grid justify-center md:pl-0">
@@ -100,16 +103,106 @@ const { user } = storeToRefs(store)
 </section>
 
 
-<section class="px-6 pb-6 2xl:px-0">
+<section class="px-6 pb-6 3xl:px-0">
 	<div class="max-w-5xl mx-auto">
 
 		<div class="bg-brand-green-100 text-brand-green text-3xl font-ropa font-extrabold leading-none text-center p-3 rounded-lg md:text-5xl md:leading-none">¡A TU RITMO!</div>
 
-		<div class="text-2xl font-ropa font-light leading-none text-center mt-4">¡TIENES HASTA EL 30 DE SEPTIEMBRE PARA COMPLETAR LOS CHALLENGES!</div>
+		<div class="text-xl font-ropa font-light leading-none text-center mt-4 md:text-2xl">¡TIENES HASTA EL 30 DE SEPTIEMBRE PARA COMPLETAR LOS CHALLENGES!</div>
 	</div>
 </section>
 
 
+
+<div id="bibliografia" class=""/>
+
+<section class="bg-brand-green bg-[url('img/hero-bg.jpeg')] bg-cover bg-right-top text-white px-6 py-16 3xl:px-0">
+	<div class="max-w-5xl mx-auto">
+		<h3 class="text-2xl font-ropa font-bold text-center md:text-4xl">BIBLIOGRAFÍA</h3>
+
+		<div class="grid gap-4 mt-6 items-center md:grid-cols-12 md:mt-14 md:gap-10">
+			<div class="md:col-span-6">
+				<img src="img/evidencia.png" alt="Resumen de Evidencia científica" class="max-w-xs mx-auto md:max-w-full">
+			</div>
+
+			<div class="md:col-span-6">
+				<div>
+					<p class="md:text-lg lg:text-xl lg:leading-loose">
+						<span class="font-bold">Ya sea como material de consulta para los CHALLENGES o para tu consult diaria</span>,
+						ponemos a tu disposición este resumen con toda la evidencia científica.
+					</p>
+
+					<div class="mt-6 lg:mt-10">
+						<Link href="#" class="bg-brand-orange text-sm font-bold leading-none p-4 inline-flex items-center gap-x-1 rounded transition-all select-none hover:opacity-90">
+							<i class="ri-download-2-line"></i>
+							<span>Descargar</span>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="px-6 pt-14 3xl:px-0">
+	<div class="max-w-5xl mx-auto">
+
+		<h3 class="text-brand-green text-2xl font-ropa font-bold text-center md:text-3xl">GANA UNA INSCRIPCIÓN AL 45º CONGRESO NACIONAL DE SEMERGEN</h3>
+
+		<h4 class="text-brand-orange text-lg font-ropa font-bold leading-tight text-center max-w-4xl mx-auto mt-6 sm:text-xl sm:leading-tight md:text-2xl md:leading-tight">¡Completa los 3 CHALLENGES! Por cada uno conseguirás una participacieon al sorteo de 4 entradas para el Congreso Semergen.<br>
+		Haz todos los CAHLLENGES y consigue una participación extra ¡Suerte!</h4>
+
+		<div class="grid gap-6 mt-14 items-center md:grid-cols-12 md:mt-14 md:gap-10">
+			<div class="md:col-span-6">
+				<img src="img/congreso-nacional-45.png" alt="Resumen de Evidencia científica" class="max-w-xs mx-auto md:max-w-full">
+			</div>
+
+			<div class="space-y-3 text-center md:text-left md:col-span-6 md:space-y-6">
+				<p class="font-ropa text-xl leading-tight md:text-2xl md:leading-tight lg:pt-6">
+					<span class="font-bold">El congreso</span> se celebrará en <span class="font-bold">Valencia</span> de los días <span class="font-bold">18 al 21 de octubre de 2023.</span>
+				</p>
+
+				<p class="text-sm">Los ganadores se anunciarán el <span class="font-bold">xxx</span> y recibirán una comunicación por email.</p>
+
+				<div class="pt-2">
+					<Link href="#" class="bg-brand-green text-white text-sm font-bold leading-none p-4 inline-flex items-center gap-x-1 rounded transition-all select-none hover:opacity-90">
+						<span>Bases legales</span>
+					</Link>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+<div id="coordinacion-cientifica" class=""/>
+
+<section class="px-6 py-20 3xl:px-0">
+	<div class="max-w-5xl mx-auto">
+
+		<h3 class="text-brand-green text-2xl font-ropa font-bold text-center md:text-3xl">COORDINACIÓN CIENTÍFICA</h3>
+
+		<div class="bg-brand-green-100 p-6 mt-7 rounded-lg">
+			<div class="grid gap-6 items-center md:grid-cols-12 md:gap-10">
+				<div class="md:col-span-6">
+					<img src="img/vicente-pascual.jpeg" alt="Dr. Vicente Pascual" class="max-w-xs mx-auto rounded-md md:max-w-full">
+				</div>
+
+				<div class="space-y-1 text-center md:text-left md:col-span-6">
+					<p class="text-brand-green text-xl font-bold">Dr. Vicente Pascual</p>
+					<p class="text-sm md:text-base">
+						<span class="font-bold">Médico de Familia y Comunitaria del E.A.P</span> Centro de Salud Palleter, profesor asociado de la Universidad CEU-Cardenal Herrera. Castelløon y miembro de los GGTT de Lípidos y de Nutriciøon de SEMERGEN.
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
 
 </PageLayout>
 </template>

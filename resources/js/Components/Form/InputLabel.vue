@@ -12,6 +12,6 @@ defineProps(['value']);
 
 <style scoped>
 label{
-	@apply text-brand-blue leading-none font-bold;
+	@apply text-brand-green leading-none font-bold;
 }
 </style>

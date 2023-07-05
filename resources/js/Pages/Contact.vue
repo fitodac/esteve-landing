@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import PageLayout from '@/Layouts/PageLayout.vue'
-import Intro from '@/Components/Pages/Intro.vue'
+import PageHeader from '@/Components/PageHeader.vue'
 import InputError from '@/Components/Form/InputError.vue'
 import InputLabel from '@/Components/Form/InputLabel.vue'
 import PrimaryButton from '@/Components/Form/PrimaryButton.vue'
@@ -60,7 +60,14 @@ const submit = () => {
 
 <template>
 <PageLayout>
-	<Intro :data="$page.props.intro" />
+	<PageHeader>
+		<div class="max-w-3xl mx-auto text-center">
+			<h2 class="text-white text-2xl font-bold leading-none md:text-3xl">CONTACTO</h2>
+			<div class="text-white mt-5">
+				<p>Contáctanos mediante el formulario que tienes a continuación:</p>
+			</div>
+		</div>
+	</PageHeader>
 
 	<div class="container global px-6 xl:px-0">
     <div
@@ -75,11 +82,8 @@ const submit = () => {
 	</div>
 
 
-	<form
-		class=" pb-20"
-		@submit.prevent="submit">
-
-		<div class="container global px-6 xl:px-0">
+	<form @submit.prevent="submit">
+		<div class="max-w-3xl mx-auto px-6 py-16 3xl:px-0">
 			<div class="grid gap-y-6">
 				<div class="grid gap-6 md:grid-cols-2">
 					<div class="">
@@ -189,13 +193,13 @@ const submit = () => {
 						<Checkbox name="remember" v-model:checked="form.acceptance" />
 
 						<span
-							class="text-gray-600 cursor-pointer pl-3">
+							class="text-gray-600 text-sm cursor-pointer pl-3">
 							He leído y acepto la
 
 							<a
 								href="https://www.esteveagora.com/es/privacidad"
 								target="_blank"
-								class="text-brand-blue font-bold pl-0.5 hover:underline">
+								class="text-brand-green pl-0.5 hover:underline">
 								política de privacidad
 							</a>
 						</span>
@@ -203,25 +207,11 @@ const submit = () => {
 					<InputError class="mt-2" :message="form.errors.acceptance" />
 				</div>
 			</div>
-		</div>
 
-
-
-		<div class="bg-[#F2F0F4] px-6 py-8 mt-12 xl:px-0">
-			<div class="container global">
-				<div class="flex justify-center">
-					<PrimaryButton
-						class=""
-						:class="{ 'opacity-25': form.processing }"
-						:disabled="form.processing">
-						<span>Enviar</span>
-					</PrimaryButton>
-				</div>
+			<div class="mt-10 flex justify-center">
+				<button class="bg-brand-orange text-white font-bold leading-tight px-20 py-2.5 transition-all select-none rounded hover:opacity-90">Enviar</button>
 			</div>
 		</div>
-
-
-
 	</form>
 </PageLayout>
 

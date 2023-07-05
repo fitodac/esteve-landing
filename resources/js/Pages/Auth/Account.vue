@@ -33,7 +33,7 @@ const sendingForm = event => sending.value = event
 			:titleBold="true"/>
 
 
-		<section class="px-6 2xl:px-0">
+		<section class="px-6 3xl:px-0">
 			<div class="max-w-3xl mx-auto pb-16 -mt-10">
 				<div class="grid grid-cols-5 gap-0 sm:grid-cols-7 md:grid-cols-12 md:gap-8">
 					<div class="md:col-span-4">
