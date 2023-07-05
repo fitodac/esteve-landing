@@ -20,17 +20,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-
-			$intro = [
-				'title' => 'Inicia sesión o regístrate para tener acceso a todo el contenido',
-				'intro' => 'Si ya estás dado de alta en Hablemos de Psiquiatría Legal o ESTEVE ÁGORA introduce tu
-										usuario y contraseña.'
-
-			];
-
-
 			return Inertia::render('Auth/Login', [
-				'intro' => $intro,
 				'canResetPassword' => Route::has('password.request'),
 				'status' => session('status'),
 			]);

@@ -34,24 +34,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-
-			$intro = [
-				'title' => 'REGISTRO',
-				'intro' => '<div class="text-gray-500 leading-tight">
-											Gracias por tu interés en HABLEMOS DE
-											PSIQUIATRÍA LEGAL.<br>Por favor introduce
-											tus datos.
-										</div>',
-				'content' => 'Si ya estás dado de alta en Hablemos de Psiquiatría Legal o
-											ESTEVE ÁGORA, haz
-											<a
-												href="/login"
-												class="text-brand-blue hover:underline">log-in</a>
-											con tu usuario y contraseña.'
-			];
-
 			return Inertia::render('Auth/Register', [
-				'intro' => $intro,
 				'countries_dropdown_options' => Country::all(),
 				'provinces_dropdown_options' => Province::all(),
 				'population_dropdown_options' => Population::all(),

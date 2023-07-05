@@ -13,17 +13,7 @@ class ContactController extends Controller
 {
 
 	public function index() {
-		
-		$intro = [
-			'title' => 'Contacto',
-			'intro' => '<span class="text-gray-600">
-										Contáctanos mediante el formulario 
-										que tienes a continuación:
-									</span>'
-		];
-
 		return Inertia::render('Contact', [
-			'intro' => $intro,
 			'specialty_options' => Specialty::all()
 		]);
 	}
