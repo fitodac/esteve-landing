@@ -42,7 +42,7 @@
 
 
 [class^="ri-"]{
-	@apply bg-brand-blue w-6 h-6 relative
+	@apply bg-brand-green w-6 h-6 relative
 						left-0
 						flex justify-center items-center 
 						transition-all rounded-full;

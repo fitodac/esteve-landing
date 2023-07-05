@@ -79,7 +79,7 @@ const handleMouseLEave = () => {
 }
 
 .title{
-	@apply text-brand-blue text-xl font-bold leading-none text-center md:text-2xl;
+	@apply text-brand-green text-xl font-bold leading-none text-center md:text-2xl;
 }
 
 .team-grid{
@@ -101,7 +101,7 @@ const handleMouseLEave = () => {
 }
 
 .team-grid-item--name{
-	@apply text-brand-blue text-xl font-bold leading-tight
+	@apply text-brand-green text-xl font-bold leading-tight
 					whitespace-nowrap overflow-hidden text-ellipsis
 					transition-all;
 }

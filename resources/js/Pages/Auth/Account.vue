@@ -45,7 +45,7 @@ const sendingForm = event => sending.value = event
 								md:w-full md:flex md:items-center md:justify-start md:px-4"
 								@click="tabnav(item.id)"
 								:disabled="tab === item.id"
-								:class="tab === item.id ? 'bg-brand-blue bg-opacity-10 text-brand-blue' : 'bg-brand-blue text-white'">
+								:class="tab === item.id ? 'bg-brand-green bg-opacity-10 text-brand-green' : 'bg-brand-green text-white'">
 								<i :class="`${item.icon} text-xl md:hidden`"></i>
 								<span class="hidden md:block">{{ item.text }}</span>
 							</button>

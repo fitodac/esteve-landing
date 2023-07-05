@@ -27,16 +27,6 @@ module.exports = {
 						100: '#EAF2DD',
 						400: '#81B56A',
 						DEFAULT: '#188338'
-					},
-
-					blue: {
-						DEFAULT: '#005FAF'
-					},
-					magenta: {
-						DEFAULT: '#9A0079'
-					},
-					pink: {
-						DEFAULT: '#ED6F81'
 					}
 				},
 				'color-form': '#EBF2F4',

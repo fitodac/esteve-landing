@@ -7,7 +7,7 @@
 
 <style lang="scss" scoped>
 .indicator{
-	@apply bg-brand-pink text-white
+	@apply bg-brand-orange text-white
 					text-2xl 
 					w-7 h-7
 					grid place-content-center 

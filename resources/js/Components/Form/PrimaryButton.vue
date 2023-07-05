@@ -19,7 +19,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .btn-primary{
-	@apply bg-brand-blue text-white 
+	@apply bg-brand-green text-white 
 					min-w-[200px] pl-8 pr-4 py-2 
 					flex justify-between items-center 
 					rounded-full transition-all 
@@ -27,7 +27,7 @@ defineProps({
 }
 
 .ri-arrow-right-s-line{
-	@apply bg-brand-pink text-white w-6 h-6 rounded-full;
+	@apply bg-brand-orange text-white w-6 h-6 rounded-full;
 }
 
 i{

@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/inertia-vue3'
 
 
 <template>
-<section class="bg-brand-blue text-white min-h-screen">
+<section class="bg-brand-green text-white min-h-screen">
 	<div class="container global">
 		<div class="py-10 flex justify-center">
 			<div class="logo"></div>
