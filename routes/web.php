@@ -24,15 +24,6 @@ Route::get('/', function(){ return Inertia::render('Home'); })->name('home');
 Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store');
 
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/podcasts-consultas', [MediaController::class, 'index'])->name('media');
-
-		Route::get('/mi-cuenta', function () {
-			return Inertia::render('Auth/Account');
-		})->name('account');
-});
-
-
 Route::get('/confirmacion-registro', function () {
 	return Inertia::render('RegisterConfirmation');
 })->name('register-confirmation');
@@ -44,6 +35,7 @@ Route::get('/confirmacion-email', function () {
 Route::post('/link-email-confirmation', function () {
 	return Inertia::render('EmailLinkConfirmation');
 })->name('link-email-confirmation');
+
 
 
 require __DIR__ . '/auth.php';
